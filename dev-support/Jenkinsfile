@@ -1,7 +1,14 @@
 // Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent { docker { image 'maven:3.3.3' } }
-  
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        timeout (time: 24, unit: 'HOURS')
+        timestamps()
+        checkoutToSubdirectory('src')
+    }
+
     environment {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
