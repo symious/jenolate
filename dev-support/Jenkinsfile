@@ -187,7 +187,6 @@ pipeline {
             }
         }
 
-    stages {
         stage ('install yetus') {
             steps {
                 dir("${WORKSPACE}/${YETUS}") {
